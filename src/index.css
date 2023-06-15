@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-content;
+  }
+
+  html, body {
+    @apply h-[100%];
+  }
+
+  body {
+    @apply bg-gray-800 text-gray-100 antialiased;
+  }
+
+  :focus {
+    @apply outline-none shadow-custom;
+  }
+
+  body,
+  input,
+  textarea,
+  button {
+    @apply font-roboto font-normal text-base;
+  }
+}
