@@ -1,8 +1,33 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+
+const transactionFormSchema = z.object({
+  description: z.string(),
+  price: z.number(),
+  category: z.string(),
+  // type: z.enum(['income', 'outcome']),
+})
+
+type TransactionFormInputs = z.infer<typeof transactionFormSchema>
 
 export function TransactionModal() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<TransactionFormInputs>({
+    resolver: zodResolver(transactionFormSchema),
+  })
+
+  async function handleCreateNewTransaction(data: TransactionFormInputs) {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    console.log(data)
+  }
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 h-full w-full bg-[#00000075] " />
@@ -15,21 +40,27 @@ export function TransactionModal() {
           <X size={24} />
         </Dialog.Close>
 
-        <form className="mt-8 flex flex-col gap-4">
+        <form
+          className="mt-8 flex flex-col gap-4"
+          onSubmit={handleSubmit(handleCreateNewTransaction)}
+        >
           <input
             type="text"
             placeholder="Description"
             className="rounded-[6px] border-0 bg-gray-900 p-4 text-gray-300 placeholder:text-gray-500"
+            {...register('description')}
           />
           <input
             type="text"
             placeholder="Price"
             className="rounded-[6px] border-0 bg-gray-900 p-4 text-gray-300 placeholder:text-gray-500"
+            {...register('price', { valueAsNumber: true })}
           />
           <input
             type="text"
             placeholder="Category"
             className="rounded-[6px] border-0 bg-gray-900 p-4 text-gray-300 placeholder:text-gray-500"
+            {...register('category')}
           />
 
           <RadioGroup.Root className="mt-2 grid grid-cols-2 gap-4">
@@ -45,7 +76,7 @@ export function TransactionModal() {
             </RadioGroup.Item>
             <RadioGroup.Item
               value="outcome"
-              className="group flex cursor-pointer items-center justify-center gap-2 rounded-[6px] border-0 bg-gray-700 p-4 text-gray-300 transition-colors data-[state=checked]:bg-red-500 data-[state=checked]:text-white data-[state=unchecked]:hover:bg-gray-600"
+              className="group flex cursor-pointer items-center justify-center gap-2 rounded-[6px] border-0 bg-gray-700 p-4 text-gray-300 shadow-red-500 transition-colors data-[state=checked]:bg-red-500 data-[state=checked]:text-white data-[state=unchecked]:hover:bg-gray-600"
             >
               <ArrowCircleDown
                 size={24}
@@ -57,7 +88,8 @@ export function TransactionModal() {
 
           <button
             type="submit"
-            className="mt-6 h-[58px] cursor-pointer rounded-[6px] border-0 bg-green-500 px-5 py-0 text-white transition-colors duration-200 hover:bg-green-700"
+            disabled={isSubmitting}
+            className="mt-6 h-[58px] cursor-pointer rounded-[6px] border-0 bg-green-500 px-5 py-0 text-white transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 [&:not(:disabled)]:bg-green-700"
           >
             Register
           </button>

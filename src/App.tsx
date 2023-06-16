@@ -1,9 +1,12 @@
+import { TransactionsProvider } from './contexts/TransactionsContext'
 import { Home } from './pages/Home/Home'
 
 export function App() {
   return (
-    <h1 className="">
-      <Home />
-    </h1>
+    <>
+      <TransactionsProvider>
+        <Home />
+      </TransactionsProvider>
+    </>
   )
 }

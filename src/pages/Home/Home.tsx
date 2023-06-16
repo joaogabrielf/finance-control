@@ -1,9 +1,13 @@
+import { useContext } from 'react'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
-import { Transaction } from '../../components/Transaction'
+import { TransactionList } from '../../components/TransactionList'
 import { SearchForm } from './Components/SearchForm'
+import { TransactionContext } from '../../contexts/TransactionsContext'
 
 export function Home() {
+  const { transactions } = useContext(TransactionContext)
+
   return (
     <div className="">
       <Header />
@@ -11,10 +15,9 @@ export function Home() {
         <Summary />
         <SearchForm />
         <main className="mt-6 flex flex-col gap-2">
-          <Transaction variant="income" />
-          <Transaction variant="income" />
-          <Transaction variant="outcome" />
-          <Transaction variant="outcome" />
+          {transactions.map((transaction) => {
+            return <TransactionList key={transaction.id} {...transaction} />
+          })}
         </main>
       </div>
     </div>
