@@ -1,9 +1,9 @@
-import { Transactions } from './pages/Transactions'
+import { Home } from './pages/Home/Home'
 
 export function App() {
   return (
     <h1 className="">
-      <Transactions />
+      <Home />
     </h1>
   )
 }
