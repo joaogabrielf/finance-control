@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { Header } from '../../components/Header'
-import { Summary } from '../../components/Summary'
-import { TransactionList } from '../../components/TransactionList'
-import { SearchForm } from './Components/SearchForm'
-import { TransactionContext } from '../../contexts/TransactionsContext'
+import { Header } from '../components/Header'
+import { Summary } from '../components/Summary'
+import { TransactionList } from '../components/TransactionList'
+import { TransactionContext } from '../contexts/TransactionsContext'
+import { SearchForm } from '../components/SearchForm'
 
 export function Home() {
   const { transactions } = useContext(TransactionContext)

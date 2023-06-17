@@ -11,7 +11,9 @@ export function TransactionList(transaction: Transaction) {
         {transaction.description}
       </span>
       <span className={`flex-1 bg-gray-700 p-5 ${color}`}>
-        {transaction.type === 'outcome' && '- '}
+        {transaction.type === 'outcome' && (
+          <span className="ml-[-0.47rem]">- </span>
+        )}
         {priceFormatter.format(transaction.price)}
       </span>
       <span className="flex-1 bg-gray-700 p-5">{transaction.category}</span>

@@ -1,5 +1,5 @@
 import { TransactionsProvider } from './contexts/TransactionsContext'
-import { Home } from './pages/Home/Home'
+import { Home } from './pages/Home'
 
 export function App() {
   return (
