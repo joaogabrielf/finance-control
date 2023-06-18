@@ -1,12 +1,14 @@
-import { useContext } from 'react'
 import { Header } from '../components/Header'
 import { Summary } from '../components/Summary'
 import { TransactionList } from '../components/TransactionList'
 import { TransactionContext } from '../contexts/TransactionsContext'
 import { SearchForm } from '../components/SearchForm'
+import { useContextSelector } from 'use-context-selector'
 
 export function Home() {
-  const { transactions } = useContext(TransactionContext)
+  const transactions = useContextSelector(TransactionContext, (context) => {
+    return context.transactions
+  })
 
   return (
     <div className="">

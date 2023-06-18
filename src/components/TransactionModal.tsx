@@ -4,13 +4,13 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
-import { useContext } from 'react'
 import { TransactionContext } from '../contexts/TransactionsContext'
+import { useContextSelector } from 'use-context-selector'
 
 const transactionFormSchema = z.object({
   description: z.string(),
   price: z.number(),
-  category: z.string(),
+  category: z.string().min(5),
   type: z.enum(['income', 'outcome']),
 })
 
@@ -24,7 +24,12 @@ interface inputTextProps {
 }
 
 export function TransactionModal() {
-  const { createTransaction } = useContext(TransactionContext)
+  const createTransaction = useContextSelector(
+    TransactionContext,
+    (context) => {
+      return context.createTransaction
+    },
+  )
 
   const {
     control,
@@ -85,11 +90,11 @@ export function TransactionModal() {
           {inputText.map((input) => (
             <input
               key={input.id}
-              type="text"
+              type={input.valueAsNumber ? 'number' : 'text'}
               placeholder={input.placeholder}
               className="rounded-[6px] border-0 bg-gray-900 p-4 text-gray-300 placeholder:text-gray-500"
               {...register(input.name, {
-                valueAsNumber: !!input.valueAsNumber,
+                valueAsNumber: input.valueAsNumber ?? false,
               })}
             />
           ))}
