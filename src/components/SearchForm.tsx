@@ -47,7 +47,7 @@ export function SearchForm() {
         disabled={isSubmitting}
         className="flex cursor-pointer items-center gap-3 rounded-[6px] border border-solid border-green-300 bg-transparent px-6 py-3 font-bold text-green-300 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-70 sm:p-4 [&:not(:disabled)]:hover:border-green-500 [&:not(:disabled)]:hover:bg-green-500 [&:not(:disabled)]:hover:text-white"
       >
-        <MagnifyingGlass size={20} className="text-green-300" />
+        <MagnifyingGlass size={20} />
         <span className="sm:hidden">Search</span>
       </button>
     </form>
