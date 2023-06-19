@@ -33,7 +33,7 @@ export function SearchForm() {
 
   return (
     <form
-      className="flex items-center gap-4"
+      className="flex w-full items-center gap-4"
       onSubmit={handleSubmit(handleSearchTransactions)}
     >
       <input
@@ -45,10 +45,10 @@ export function SearchForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="flex cursor-pointer items-center gap-3 rounded-[6px] border border-solid border-green-300 bg-transparent px-6 py-3 font-bold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-70 [&:not(:disabled)]:hover:border-green-500 [&:not(:disabled)]:hover:bg-green-500 [&:not(:disabled)]:hover:text-white"
+        className="flex cursor-pointer items-center gap-3 rounded-[6px] border border-solid border-green-300 bg-transparent px-6 py-3 font-bold text-green-300 transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-70 sm:p-4 [&:not(:disabled)]:hover:border-green-500 [&:not(:disabled)]:hover:bg-green-500 [&:not(:disabled)]:hover:text-white"
       >
-        <MagnifyingGlass size={20} />
-        Search
+        <MagnifyingGlass size={20} className="text-green-300" />
+        <span className="sm:hidden">Search</span>
       </button>
     </form>
   )

@@ -27,8 +27,6 @@ export function Home() {
   const isDisabledLeft = currentPage === 1
   const isDisabledRight = currentPage === totalPages
 
-  console.log(isDisabledLeft, isDisabledRight)
-
   function handleLeftClickPage() {
     if (!isDisabledLeft) changePage(currentPage - 1)
   }

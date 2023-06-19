@@ -8,9 +8,9 @@ import { TransactionContext } from '../contexts/TransactionsContext'
 import { useContextSelector } from 'use-context-selector'
 
 const transactionFormSchema = z.object({
-  description: z.string(),
+  description: z.string().min(1),
   price: z.number(),
-  category: z.string().min(5),
+  category: z.string().min(2),
   type: z.enum(['income', 'outcome']),
 })
 
@@ -74,7 +74,7 @@ export function TransactionModal() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 h-full w-full bg-[#00000075] " />
-      <Dialog.Content className="fixed left-1/2 top-1/2 min-w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-[6px] bg-gray-800 p-10 pb-12">
+      <Dialog.Content className="fixed left-1/2 top-1/2 min-w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-[6px] bg-gray-800 p-10 pb-12 sm:min-w-[calc(100%-32px)]">
         <Dialog.Title className="text-2xl font-bold">
           New Transaction
         </Dialog.Title>
