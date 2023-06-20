@@ -20,4 +20,4 @@ To get started with the project, follow these steps:
 
 ## 🌐 Deployed Version
 
-You can find a deployed version of this project at https://pomodoro-timer-sigma-blush.vercel.app/.
+You can find a deployed version of this project at https://finance-control-seven.vercel.app/.
